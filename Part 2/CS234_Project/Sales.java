@@ -2,7 +2,7 @@ package CS234_Project;
 
 import java.util.Scanner;
 
-public class Employees {
+public class Sales {
 
     public static void menu(){
 
@@ -10,14 +10,13 @@ public class Employees {
 
         while(true){
             System.out.println("\nWhat would you like to do:");
-            System.out.println("1. Add employee");
-            System.out.println("2. List employees");
-            System.out.println("3. Update employee");
-            System.out.println("4. Remove employee");
+            System.out.println("1. Add sale");
+            System.out.println("2. Print sales report");
+            System.out.println("3. Add item");
+            System.out.println("4. list items");
             System.out.println("5. Go back");
-            System.out.println("6. Quit");
+            System.out.println("6. Exit");
 
-            //This is for input validation
             int input;
             while(!x.hasNextInt()){
                 System.out.println("invalid input, type a number between 1 and 6");
@@ -25,14 +24,16 @@ public class Employees {
             }
             input = x.nextInt();
 
+
+
             switch(input) {
-                case 1: //TODO: implement Employee.Create;
+                case 1: //TODO: ;
                     break;
-                case 2: //TODO: implement Employee.Read;
+                case 2: //TODO: ;
                     break;
-                case 3: //TODO: implement Employee.Update;
+                case 3: //TODO: ;
                     break;
-                case 4: //TODO: implement Employee.Remove;
+                case 4: //TODO: ;
                     break;
                 case 5: Main.menu();
                     break;

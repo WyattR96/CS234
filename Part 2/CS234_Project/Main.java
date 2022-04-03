@@ -1,6 +1,7 @@
 package CS234_Project;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -10,12 +11,16 @@ public class Main {
      */
     public static void main(String[] args){
 
+        System.out.println("\nAdding dummy data\n");
+
         Employees.addEmployee("Wyatt Robinson",60000);
         Employees.addEmployee("John Smith",65000);
         Employees.addEmployee("John Doe",55555);
+
         Employees employee = Employees.getEmployeeList().get(2);
         Employees employee2 = Employees.getEmployeeList().get(1);
         Employees employee3 = Employees.getEmployeeList().get(0);
+
 
         Cars.addCar("Ford","Ranger");
         Cars.addCar("Toyota","Hilux");
@@ -25,16 +30,20 @@ public class Main {
         Cars car2 = Cars.getCarsList().get(2);
         Cars car3 = Cars.getCarsList().get(0);
 
+
         Clients.addClient("Jane Doe", car);
         Clients.addClient("asdf asdfson", car2);
         Clients.addClient("Josh Smithson", car3);
+
         Clients client = Clients.getClientsList().get(1);
         Clients client2 = Clients.getClientsList().get(0);
         Clients client3 = Clients.getClientsList().get(2);
 
+
         Appointments.addAppointment(client, employee, "02/22/2022");
         Appointments.addAppointment(client2, employee2, "08/21/2022");
         Appointments.addAppointment(client3, employee3, "08/22/2022");
+
 
         Services.addService(employee,client,"Engine blew up lol", 6000);
         Services.addService(employee2,client2,"I drove it for 5000 miles without oil", 50000);
@@ -101,7 +110,7 @@ public class Main {
                     break;
                 case 2: Employees.listEmployees();
                     break;
-                case 3: Employees.updateEmployeeOptions();
+                case 3: Employees.updateEmployee();
                     break;
                 case 4: Employees.removeEmployee();
                     break;
@@ -265,6 +274,11 @@ public class Main {
         }
     }
 
+    /*
+    All methods below this are used for input validation, mainly used to reduce the amount of code that all does similar
+    things in the main objects.
+     */
+
     /**
      * This method is used to make sure the user inputs a string. Used mainly for names.
      * @return the string
@@ -312,4 +326,26 @@ public class Main {
 
         return x.nextDouble();
     }
-}
+
+    /**
+     * This is used to check if an integer is in the range of an arraylist.
+     * @param arr the desired array
+     * @param num the number to be checked
+     * @return the number if it is smaller than the arraylists size
+     */
+    public static int arrayInRangeCheck(ArrayList<?> arr, int num){
+
+        Scanner x = new Scanner(System.in);
+
+        while(num >= arr.size()) {
+            System.out.println("number must be less than " + arr.size());
+
+            while (!x.hasNextLine()) {
+                System.out.println("invalid input");
+                x.next();
+            }
+            num = x.nextInt();
+        }
+            return num;
+        }
+    }

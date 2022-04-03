@@ -24,6 +24,7 @@ public class Cars {
 
     public void setModel(String model){this.Model = model;}
 
+    //Overrides the standard toString method
     public String toString(){return "Make: " + this.getMake() +" | Model: "+ this.getModel();}
 
     public static ArrayList<Cars> getCarsList(){return (ArrayList<Cars>) carsList;}
@@ -50,23 +51,82 @@ public class Cars {
     public static void addCar(String make,String model){
         Cars newCar = new Cars(make,model);
         getCarsList().add(newCar);
+        System.out.println("Vehicle added successfully");
     }
 
-    public static void listCars(){for (Cars car : carsList) System.out.println(car);}
+    /**
+     * Lists all cars
+     */
+    public static void listCars(){
+        int carIndex = 0;
+        for (Cars car : carsList){
+            System.out.println(carIndex + " " + car);
+            carIndex++;
+        }
+    }
 
     /**
      * Takes a cars make and model then removes it from carsList.
      */
     public static void removeCar(){
-        //TODO
+
+        System.out.println("Which car would you like to remove:");
+        listCars();
+        int carSelection = Main.intInputValidation();
+        int carIndex = Main.arrayInRangeCheck(getCarsList(),carSelection);
+
+        getCarsList().remove(carIndex);
+        System.out.println("Vehicle removed successfully");
     }
 
-
+    /**
+     * Gets the index of a car in cars list then updates a given element
+     */
     public static void updateCar(){
-        //TODO
+
+        System.out.println("Which car would you like to update:");
+        listCars();
+        int carSelection = Main.intInputValidation();
+        int carIndex = Main.arrayInRangeCheck(getCarsList(),carSelection);
+
+        Cars car = getCarsList().get(carIndex);
+
+        System.out.println("What would you like to update about this car:");
+        System.out.println("1. The make");
+        System.out.println("2. The model");
+        System.out.println("3. Cancel");
+        //System.out.println("3. The type");//TODO
+        int selection = Main.intInputValidation();
+
+        switch (selection){
+            case 1:
+                System.out.println("What is the new make of this vehicle:");
+                String newMake = Main.stringInputValidation();
+
+                car.setMake(newMake);
+                System.out.println("Make updated successfully");
+                break;
+
+            case 2:
+                System.out.println("What is the new model of this vehicle:");
+                String newModel = Main.stringInputValidation();
+
+                car.setModel(newModel);
+                System.out.println("Model updated successfully");
+                break;
+
+            case 3:
+                Main.carsMenu();
+                break;
+
+            case 4: default:
+                System.out.println("Invalid input");
+                break;
+        }
     }
 }
 
+//TODO: find a use for this child class
 class carType extends Cars{
 
     private String Type;
@@ -80,6 +140,7 @@ class carType extends Cars{
 
     public String getType(){return this.Type;}
 
+    //Overrides the standard toString method
     public String toString(){
         return "Maker: " + this.getMake() + " | Model: " + this.getModel() + " | Type: " + this.getType();
     }

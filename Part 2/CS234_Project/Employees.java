@@ -28,7 +28,7 @@ public class Employees {
     public static ArrayList<Employees> getEmployeeList(){return (ArrayList<Employees>) employeeList;}
 
     //Overrides the standard toString method
-    public String toString(){return "Name: " + this.getEmployeeName() + " | Salary: " + this.getEmployeeSalary();}
+    public String toString(){return "Name: " + this.getEmployeeName() + " | Salary: $" + this.getEmployeeSalary();}
 
 
     /**
@@ -64,7 +64,6 @@ public class Employees {
             System.out.println(employeeIndex + " " + employee);
             employeeIndex++;
         }
-
     }
 
     /**
@@ -96,6 +95,7 @@ public class Employees {
         System.out.println("Which employee would you like to remove:");
         listEmployees();
         int employeeSelection = Main.intInputValidation();
+
         int employeeIndex = Main.arrayInRangeCheck(getEmployeeList(),employeeSelection);
 
         getEmployeeList().remove(employeeIndex);

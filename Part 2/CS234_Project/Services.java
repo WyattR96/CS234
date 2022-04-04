@@ -46,7 +46,7 @@ public class Services {
     public String toString(){
         return this.getEmployee() + " is servicing " + this.getClient() +
                 "\nProblem: " + this.getCarService() +
-                "\nCost: " + this.getServiceCost() +
+                "\nCost: $" + this.getServiceCost() +
                 "\n" ;
     }
 
@@ -74,7 +74,7 @@ public class Services {
         System.out.println("What does the client say is wrong with their vehicle:");
         String service = Main.stringInputValidation();
 
-        System.out.println("What is the estimated cost of this service:");
+        System.out.print("What is the estimated cost of this service:\n$");
         double cost = Main.doubleInputValidation();
 
         addService(employee,client,service,cost);

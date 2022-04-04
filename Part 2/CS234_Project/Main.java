@@ -11,7 +11,7 @@ public class Main {
      */
     public static void main(String[] args){
 
-        System.out.println("\nAdding dummy data\n");
+        System.out.println("\n***Adding dummy data***\n");
 
         Employees.addEmployee("Wyatt Robinson",60000);
         Employees.addEmployee("John Smith",65000);
@@ -276,7 +276,7 @@ public class Main {
 
     /*
     All methods below this are used for input validation, mainly used to reduce the amount of code that all does similar
-    things in the main objects.
+    operations in the main objects.
      */
 
     /**
@@ -328,7 +328,8 @@ public class Main {
     }
 
     /**
-     * This is used to check if an integer is in the range of an arraylist.
+     * This is used to check if an integer is in the range of an arraylist. if the arrayList has no entries it falls
+     * back to the main menu.
      * @param arr the desired array
      * @param num the number to be checked
      * @return the number if it is smaller than the arraylists size
@@ -336,11 +337,18 @@ public class Main {
     public static int arrayInRangeCheck(ArrayList<?> arr, int num){
 
         Scanner x = new Scanner(System.in);
+        if(arr.size() <= 0){
+            //HALT_AND_CATCH_FIRE
+            System.out.println("\n***LIST HAS NO ENTRIES***");
+            System.out.println("FALLING BACK TO MAIN MENU");
+            menu();
+        }
 
-        while(num >= arr.size()) {
-            System.out.println("number must be less than " + arr.size());
+        while(num >= arr.size() || num < 0) {
 
-            while (!x.hasNextLine()) {
+            System.out.println("Input must be a non-negative number " + (arr.size()-1) + " or less");
+
+            while (!x.hasNextInt()) {
                 System.out.println("invalid input");
                 x.next();
             }

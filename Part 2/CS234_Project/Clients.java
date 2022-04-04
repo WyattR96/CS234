@@ -107,5 +107,6 @@ public class Clients {
         Cars car = Cars.getCarsList().get(vehicleIndex);
 
         getClientsList().get(clientIndex).setClientCar(car);
+        System.out.println("Client updated successfully");
     }
 }

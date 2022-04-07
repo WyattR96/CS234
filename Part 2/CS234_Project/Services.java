@@ -1,6 +1,6 @@
 package CS234_Project;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * This class handles the creation, reading, updating and deleting of objects of class Services. It also creates a
@@ -62,9 +62,8 @@ class Services {
             System.out.println("2. List services");
             System.out.println("3. Update service");
             System.out.println("4. Remove service");
-            System.out.println("5. Create service report");
-            System.out.println("6. Go back");
-            System.out.println("7. Quit");
+            System.out.println("5. Go back");
+            System.out.println("6. Quit");
 
             int input = Main.intInputValidation();
 
@@ -77,13 +76,11 @@ class Services {
                     break;
                 case 4: Services.removeService();
                     break;
-                case 5: Services.serviceReport();
+                case 5: Main.menu();
                     break;
-                case 6: Main.menu();
+                case 6: System.exit(0);
                     break;
-                case 7: System.exit(0);
-                    break;
-                case 8: default: System.out.println(
+                case 7: default: System.out.println(
                         "You typed "+ input + "\ninvalid input");
                     break;
             }
@@ -96,18 +93,15 @@ class Services {
      * addService().
      */
     public static void addServicesOptions(){
-
         System.out.println("Which employee will be performing the service:");
         Employees.listEmployees();
-        int employeeSelection = Main.intInputValidation();
-        int employeeIndex = Main.arrayInRangeCheck(Employees.getEmployeeList(),employeeSelection);
+        int employeeIndex = Main.arrayInRangeCheck(Employees.getEmployeeList());
 
         Employees employee = Employees.getEmployeeList().get(employeeIndex);
 
         System.out.println("Which client will be receiving the service:");
         Clients.listClients();
-        int clientSelection = Main.intInputValidation();
-        int clientIndex = Main.arrayInRangeCheck(Clients.getClientsList(),clientSelection);
+        int clientIndex = Main.arrayInRangeCheck(Clients.getClientsList());
 
         Clients client = Clients.getClientsList().get(clientIndex);
 
@@ -150,11 +144,9 @@ class Services {
      * it then gets the users input on what to update and changes elements of the service as needed.
      */
     public static void updateService(){
-
         System.out.println("Which service would you like to update:");
         listServices();
-        int serviceSelection = Main.intInputValidation();
-        int serviceIndex = Main.arrayInRangeCheck(getServicesList(),serviceSelection);
+        int serviceIndex = Main.arrayInRangeCheck(getServicesList());
 
         Services service = getServicesList().get(serviceIndex);
 
@@ -171,10 +163,9 @@ class Services {
             case 1:
                 System.out.println("Which employee is now assigned to this service:");
                 Employees.listEmployees();
-                int employeeSelection = Main.intInputValidation();
-                int employeeIndex = Main.arrayInRangeCheck(Employees.getEmployeeList(),employeeSelection);
+                int employeeSelection = Main.arrayInRangeCheck(Employees.getEmployeeList());
 
-                Employees employee = Employees.getEmployeeList().get(employeeIndex);
+                Employees employee = Employees.getEmployeeList().get(employeeSelection);
 
                 service.setEmployee(employee);
                 System.out.println("Assigned employee updated successfully");
@@ -183,10 +174,9 @@ class Services {
             case 2:
                 System.out.println("Which client is now assigned to this service:");
                 Clients.listClients();
-                int clientSelection = Main.intInputValidation();
-                int clientIndex = Main.arrayInRangeCheck(Clients.getClientsList(),clientSelection);
+                int clientSelection = Main.arrayInRangeCheck(Clients.getClientsList());
 
-                Clients client = Clients.getClientsList().get(clientIndex);
+                Clients client = Clients.getClientsList().get(clientSelection);
 
                 service.setClient(client);
                 System.out.println("Assigned client updated successfully");
@@ -214,7 +204,8 @@ class Services {
                 break;
 
             case 6:
-                default: System.out.println("Invalid input, type a number between 1 and 4");
+                default:
+                    System.out.println("Invalid input, type a number between 1 and 4");
                 break;
         }
     }
@@ -223,13 +214,11 @@ class Services {
      * This method gets the index of a service and removes it from servicesList
      */
     public static void removeService(){
-
         System.out.println("Which service would you like to remove:");
         listServices();
-        int serviceSelection = Main.intInputValidation();
-        int serviceIndex = Main.arrayInRangeCheck(getServicesList(),serviceSelection);
+        int serviceSelection = Main.arrayInRangeCheck(getServicesList());
 
-        getServicesList().remove(serviceIndex);
+        getServicesList().remove(serviceSelection);
         System.out.println("Service removed successfully");
     }
 
@@ -237,7 +226,6 @@ class Services {
      * This method prints out a service report.
      */
     public static double serviceReport(){
-
         double sum = 0;
         for(Services service: getServicesList()){
             System.out.println(service.getClient());

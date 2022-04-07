@@ -1,6 +1,6 @@
 package CS234_Project;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * This class handles the creation, reading, updating and deleting of objects of class Clients.
@@ -81,8 +81,7 @@ class Clients {
 
         System.out.println("What car does the client have:");
         Cars.listCars();
-        int selection = Main.intInputValidation();
-        int carIndex = Main.arrayInRangeCheck(Cars.getCarsList(),selection);
+        int carIndex = Main.arrayInRangeCheck(Cars.getCarsList());
 
         Cars car = Cars.getCarsList().get(carIndex);
 
@@ -119,35 +118,55 @@ class Clients {
      * updated about a client then changes clientsList as needed
      */
     public static void updateClient(){
-
         System.out.println("Which client would you like to update:");
         listClients();
-        int clientSelection = Main.intInputValidation();
-        int clientIndex = Main.arrayInRangeCheck(getClientsList(),clientSelection);
+        int clientSelection = Main.arrayInRangeCheck(getClientsList());
 
+        Clients client = getClientsList().get(clientSelection);
 
-        System.out.println("What is the clients new vehicle");
-        Cars.listCars();
-        int vehicleSelection = Main.intInputValidation();
-        int vehicleIndex = Main.arrayInRangeCheck(Cars.getCarsList(),vehicleSelection);
+        System.out.println("What would you like to update about this client:");
+        System.out.println("1. Their name");
+        System.out.println("2. Their vehicle");
+        System.out.println("3. Go back");
+        int selection = Main.intInputValidation();
 
-        Cars car = Cars.getCarsList().get(vehicleIndex);
+        switch(selection){
+            case 1:
+                System.out.println("What is the clients new name:");
+                String newName = Main.stringInputValidation();
 
-        getClientsList().get(clientIndex).setClientCar(car);
-        System.out.println("Client updated successfully");
+                client.setClientName(newName);
+                System.out.println("Client updated successfully");
+                break;
+
+            case 2:
+                System.out.println("What is the clients new vehicle");
+                Cars.listCars();
+                int carSelection = Main.arrayInRangeCheck(Cars.getCarsList());
+
+                Cars car = Cars.getCarsList().get(carSelection);
+
+                client.setClientCar(car);
+                System.out.println("Client updated successfully");
+                break;
+
+            case 3: clientsMenu(); break;
+
+            case 4: default: System.out.println("Invalid input"); break;
+
+        }
+
     }
 
     /**
      * Takes a clients index then removes them from clientsList.
      */
     public static void removeClient(){
-
         System.out.println("Which client would you like to remove:");
         listClients();
-        int clientSelection = Main.intInputValidation();
-        int clientIndex = Main.arrayInRangeCheck(getClientsList(),clientSelection);
+        int clientSelection = Main.arrayInRangeCheck(getClientsList());
 
-        Clients client = getClientsList().get(clientIndex);
+        Clients client = getClientsList().get(clientSelection);
         getClientsList().remove(client);
         System.out.println("Client removed successfully");
     }

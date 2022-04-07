@@ -1,6 +1,6 @@
 package CS234_Project;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * This class handles the creation, reading, updating and deleting of employee objects. It also has a method for
@@ -9,6 +9,7 @@ import java.util.*;
 class Employees {
 
     private static final ArrayList<Employees> employeeList = new ArrayList<>();
+
 
     private String EmployeeName;
     private double EmployeeSalary;
@@ -20,6 +21,8 @@ class Employees {
     }
 
     //Getters, setters and toString
+    public static ArrayList<Employees> getEmployeeList(){return employeeList;}
+
     public void setEmployeeName(String name){this.EmployeeName = name;}
 
     public void setEmployeeSalary(double salary){this.EmployeeSalary = salary;}
@@ -28,7 +31,6 @@ class Employees {
 
     public double getEmployeeSalary(){return this.EmployeeSalary;}
 
-    public static ArrayList<Employees> getEmployeeList(){return employeeList;}
 
     //Overrides the standard toString method
     public String toString(){return "Name: " + this.getEmployeeName() + " | Salary: $" + this.getEmployeeSalary();}
@@ -45,9 +47,8 @@ class Employees {
             System.out.println("2. List employees");
             System.out.println("3. Update employee");
             System.out.println("4. Remove employee");
-            System.out.println("5. Employee cost report");
-            System.out.println("6. Go back");
-            System.out.println("7. Quit");
+            System.out.println("5. Go back");
+            System.out.println("6. Quit");
 
             int input = Main.intInputValidation();
 
@@ -60,13 +61,11 @@ class Employees {
                     break;
                 case 4: removeEmployee();
                     break;
-                case 5: employeeCostReport();
+                case 5: Main.menu();
                     break;
-                case 6: Main.menu();
+                case 6: System.exit(0);
                     break;
-                case 7: System.exit(0);
-                    break;
-                case 8: default: System.out.println(
+                case 7: default: System.out.println(
                         "You typed "+ input + "\ninvalid input");
                     break;
             }
@@ -113,19 +112,43 @@ class Employees {
      * This method asks for an employees name to update then calls the update employee method to save the changes.
      */
     public static void updateEmployee(){
-
         System.out.println("Which employee would you like to update:");
         listEmployees();
-        int employeeSelection = Main.intInputValidation();
-        int employeeIndex = Main.arrayInRangeCheck(getEmployeeList(),employeeSelection);
+        int employeeSelection = Main.arrayInRangeCheck(getEmployeeList());
+        Employees employee = getEmployeeList().get(employeeSelection);
 
-        Employees employee = getEmployeeList().get(employeeIndex);
+        System.out.println("What would you like to update about this employee:");
+        System.out.println("1. Their name");
+        System.out.println("2. Their salary");
+        System.out.println("3. Cancel");
+        int selection = Main.intInputValidation();
 
-        System.out.println("Write the employees new salary");
-        double newSalary = Main.doubleInputValidation();
+        switch(selection){
+            case 1:
+                System.out.println("Write the employees updated name");
+                String newName = Main.stringInputValidation();
 
-        employee.setEmployeeSalary(newSalary);
-        System.out.println("Employee updated successfully");
+                employee.setEmployeeName(newName);
+                System.out.println("Employee updated successfully");
+                break;
+
+            case 2:
+                System.out.println("Write the employees new salary");
+                double newSalary = Main.doubleInputValidation();
+
+                employee.setEmployeeSalary(newSalary);
+                System.out.println("Employee updated successfully");
+                break;
+
+            case 3:
+                employeeMenu();
+                break;
+
+            case 4:
+                default:
+                System.out.println("invalid input");
+                break;
+        }
     }
 
 
@@ -134,14 +157,12 @@ class Employees {
      * This method asks for an employee name then removes it from employeeList.
      */
     public static void removeEmployee(){
-
         System.out.println("Which employee would you like to remove:");
         listEmployees();
-        int employeeSelection = Main.intInputValidation();
 
-        int employeeIndex = Main.arrayInRangeCheck(getEmployeeList(),employeeSelection);
+        int employeeSelection = Main.arrayInRangeCheck(getEmployeeList());
 
-        getEmployeeList().remove(employeeIndex);
+        getEmployeeList().remove(employeeSelection);
         System.out.println("Employee removed successfully");
     }
 
@@ -149,7 +170,6 @@ class Employees {
      * Creates a report of the cost of all the employees combined
      */
     public static double employeeCostReport(){
-
         double sum = 0;
 
         for(Employees employee: getEmployeeList()){

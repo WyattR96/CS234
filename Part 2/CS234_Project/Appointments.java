@@ -1,6 +1,6 @@
 package CS234_Project;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * This class handles the creation, reading, updating and deleting of objects of class Appointments.
@@ -83,7 +83,6 @@ class Appointments {
      * appointment, it then calls on addAppointment.
      */
     public static void addAppointmentOptions(){
-
         System.out.println("Which client needs to make an appointment:");
         Clients.listClients();
         int selection = Main.intInputValidation();
@@ -130,12 +129,9 @@ class Appointments {
      * the user what needs to be updated and changes elements in appointmentsList as needed
      */
     public static void updateAppointment(){
-
         System.out.println("Which appointment would you like to update:");
         listAppointments();
-        int selectedAppointment = Main.intInputValidation();
-        int appointmentIndex = Main.arrayInRangeCheck(getAppointmentsList(),selectedAppointment);
-
+        int appointmentIndex = Main.arrayInRangeCheck(getAppointmentsList());
         Appointments appointment = getAppointmentsList().get(appointmentIndex);
 
         System.out.println("What would you like to update about the appointment:");
@@ -150,10 +146,9 @@ class Appointments {
             case 1:
                 System.out.println("Which employee will now be assigned to this appointment:");
                 Employees.listEmployees();
-                int employeeSelection = Main.intInputValidation();
-                int employeeIndex = Main.arrayInRangeCheck(Employees.getEmployeeList(),employeeSelection);
+                int employeeSelection = Main.arrayInRangeCheck(Employees.getEmployeeList());
 
-                Employees newEmployee = Employees.getEmployeeList().get(employeeIndex);
+                Employees newEmployee = Employees.getEmployeeList().get(employeeSelection);
                 appointment.setEmployee(newEmployee);
                 System.out.println("Assigned employee updated successfully");
                 break;
@@ -161,10 +156,9 @@ class Appointments {
             case 2:
                 System.out.println("Who is the new client:");
                 Clients.listClients();
-                int clientSelection = Main.intInputValidation();
-                int clientIndex = Main.arrayInRangeCheck(Clients.getClientsList(),clientSelection);
+                int clientSelection = Main.arrayInRangeCheck(Clients.getClientsList());
 
-                Clients newClient = Clients.getClientsList().get(clientIndex);
+                Clients newClient = Clients.getClientsList().get(clientSelection);
                 appointment.setClient(newClient);
                 System.out.println("Client updated successfully");
                 break;
@@ -181,7 +175,7 @@ class Appointments {
                 break;
 
             case 5: default:
-                System.out.println("Invalid input, input must be between 1 and 3");
+                    System.out.println("Invalid input, input must be between 1 and 3");
                 break;
         }
 
@@ -191,13 +185,11 @@ class Appointments {
      * Gets the index of an appointment then removes it
      */
     public static void removeAppointment(){
-
         System.out.println("Which appointment would you like to remove:");
         listAppointments();
-        int selectedAppointment = Main.intInputValidation();
-        int AppointmentIndex = Main.arrayInRangeCheck(getAppointmentsList(),selectedAppointment);
+        int appointmentSelection = Main.arrayInRangeCheck(getAppointmentsList());
 
-        getAppointmentsList().remove(AppointmentIndex);
+        getAppointmentsList().remove(appointmentSelection);
         System.out.println("Appointment removed successfully");
     }
 }

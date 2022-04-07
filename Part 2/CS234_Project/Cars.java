@@ -1,6 +1,6 @@
 package CS234_Project;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * This class handles the creation, reading, updating and deleting of objects of the class Cars.
@@ -19,6 +19,8 @@ class Cars {
     }
 
     //Getters and setters
+    public static ArrayList<Cars> getCarsList(){return carsList;}
+
     public String getMake(){return this.Make;}
 
     public void setMake(String make){this.Make = make;}
@@ -26,8 +28,6 @@ class Cars {
     public String getModel(){return this.Model;}
 
     public void setModel(String model){this.Model = model;}
-
-    public static ArrayList<Cars> getCarsList(){return carsList;}
 
     //Overrides the standard toString method
     public String toString(){return "Make: " + this.getMake() +" | Model: "+ this.getModel();}
@@ -116,10 +116,9 @@ class Cars {
 
         System.out.println("Which car would you like to update:");
         listCars();
-        int carSelection = Main.intInputValidation();
-        int carIndex = Main.arrayInRangeCheck(getCarsList(),carSelection);
+        int carSelection = Main.arrayInRangeCheck(getCarsList());
 
-        Cars car = getCarsList().get(carIndex);
+        Cars car = getCarsList().get(carSelection);
 
         System.out.println("What would you like to update about this car:");
         System.out.println("1. The make");
@@ -162,10 +161,9 @@ class Cars {
 
         System.out.println("Which car would you like to remove:");
         listCars();
-        int carSelection = Main.intInputValidation();
-        int carIndex = Main.arrayInRangeCheck(getCarsList(),carSelection);
+        int carSelection = Main.arrayInRangeCheck(getCarsList());
 
-        getCarsList().remove(carIndex);
+        getCarsList().remove(carSelection);
         System.out.println("Vehicle removed successfully");
     }
 }

@@ -1,7 +1,6 @@
 package CS234_Project;
 
-
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -14,7 +13,7 @@ class Main {
      * This method creates dummy data then calls the main menu method.
      */
     public static void main(String[] args){
-
+        
         Employees.addEmployee("Wyatt Robinson",60000);
         Employees.addEmployee("John Smith",65000);
         Employees.addEmployee("John Doe",55555);
@@ -43,6 +42,7 @@ class Main {
         Cars car4 = Cars.getCarsList().get(3);
         Cars car5 = Cars.getCarsList().get(4);
         Cars car6 = Cars.getCarsList().get(5);
+
 
         Clients.addClient("Jane Doe", car);
         Clients.addClient("asdf asdfson", car2);
@@ -130,6 +130,7 @@ class Main {
             System.out.println("1. Employee cost report");
             System.out.println("2. Services income report");
             System.out.println("3. Total profit report");
+            System.out.println("4. Go back");
             int input = intInputValidation();
 
             switch (input) {
@@ -139,22 +140,31 @@ class Main {
 
                 case 2:
                     Services.serviceReport();
+                    System.out.println("\n");
                     break;
 
                 case 3:
                     double employeeCost = Employees.employeeCostReport();
                     double servicesIncome = Services.serviceReport();
+                    double total = servicesIncome-employeeCost;
+                    String totalString = String.format("%.2f",total);
 
-                    System.out.println("Total profits: $" + (servicesIncome - employeeCost) + "\n");
+                    if(servicesIncome-employeeCost >= 0){
+                        System.out.println("\nTotal profits: $" + totalString + "\n");
+                    }else{
+                        System.out.println("\nTotal loss: $" + totalString + "\n");
+                    }
+
                     break;
 
-                case 4: default:
+                case 4: menu(); break;
+
+                case 5: default:
                     System.out.println("Invalid input");
                     break;
             }
         }
     }
-
 
     /*
     All methods below this are used for input validation, mainly used to reduce the amount of code that all does similar
@@ -216,9 +226,16 @@ class Main {
      * @param num the number to be checked
      * @return the number if it is smaller than the arraylists size
      */
-    public static int arrayInRangeCheck(ArrayList<?> arr, int num){
+    public static int arrayInRangeCheck(List<?> arr){
 
         Scanner x = new Scanner(System.in);
+
+        while(!x.hasNextInt()){
+            System.out.println("invalid input, input must be an integer");
+            x.next();
+        }
+        int num = x.nextInt();
+
         if(arr.size() <= 0){
             //HALT_AND_CATCH_FIRE
             System.out.println("\n***LIST HAS NO ENTRIES***");

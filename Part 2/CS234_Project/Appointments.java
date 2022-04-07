@@ -2,9 +2,12 @@ package CS234_Project;
 
 import java.util.*;
 
-public class Appointments {
+/**
+ * This class handles the creation, reading, updating and deleting of objects of class Appointments.
+ */
+class Appointments {
 
-    private static ArrayList<Appointments> appointmentsList = new ArrayList<>();
+    private static final ArrayList<Appointments> appointmentsList = new ArrayList<>();
 
     private Clients Client;
     private Employees Employee;
@@ -37,6 +40,43 @@ public class Appointments {
         return this.getClient() + " Has an appointment with \n" + this.getEmployee() +" on " + this.getDate() + "\n";
     }
 
+
+    /**
+     * This method builds a menu to access everything having to do with the Appointments class.
+     */
+    public static void appointmentsMenu(){
+
+        while(true){
+            System.out.println("\nWhat would you like to do:");
+            System.out.println("1. Create appointment");
+            System.out.println("2. List appointments");
+            System.out.println("3. Update appointment");
+            System.out.println("4. Remove appointment");
+            System.out.println("5. Go back");
+            System.out.println("6. Quit");
+
+            int input = Main.intInputValidation();
+
+            switch(input) {
+                case 1: Appointments.addAppointmentOptions();
+                    break;
+                case 2: Appointments.listAppointments();
+                    break;
+                case 3: Appointments.updateAppointment();
+                    break;
+                case 4: Appointments.removeAppointment();
+                    break;
+                case 5: Main.menu();
+                    break;
+                case 6: System.exit(0);
+                    break;
+                case 7: default: System.out.println(
+                        "You typed "+ input + "\ninvalid input");
+                    break;
+            }
+            System.out.println("----------------");
+        }
+    }
 
     /**
      * This method gets the client with the appointment, the employee assigned to the appointment and the date of the
@@ -137,7 +177,7 @@ public class Appointments {
                 System.out.println("Appointment date updated successfully");
                 break;
             case 4:
-                Main.appointmentsMenu();
+                appointmentsMenu();
                 break;
 
             case 5: default:

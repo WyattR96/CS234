@@ -2,9 +2,12 @@ package CS234_Project;
 
 import java.util.*;
 
-public class Clients {
+/**
+ * This class handles the creation, reading, updating and deleting of objects of class Clients.
+ */
+class Clients {
 
-    private static ArrayList<Clients> clientsList = new ArrayList<>();
+    private static final ArrayList<Clients> clientsList = new ArrayList<>();
 
     private String Name;
     private Cars Car;
@@ -31,6 +34,43 @@ public class Clients {
         return "Client name: "+ this.getClientName() + " | Client vehicle: " + this.getClientCar();
     }
 
+
+    /**
+     * This method builds a menu in order to access everything having to do with the Clients class.
+     */
+    public static void clientsMenu(){
+
+        while(true){
+            System.out.println("\nWhat would you like to do:");
+            System.out.println("1. Add client");
+            System.out.println("2. List clients");
+            System.out.println("3. Update client");
+            System.out.println("4. Remove client");
+            System.out.println("5. Go back");
+            System.out.println("6. Quit");
+
+            int input = Main.intInputValidation();
+
+            switch(input) {
+                case 1: Clients.addClientOptions();
+                    break;
+                case 2: Clients.listClients();
+                    break;
+                case 3: Clients.updateClient();
+                    break;
+                case 4: Clients.removeClient();
+                    break;
+                case 5: Main.menu();
+                    break;
+                case 6: System.exit(0);
+                    break;
+                case 7: default: System.out.println(
+                        "You typed "+ input + "\ninvalid input");
+                    break;
+            }
+            System.out.println("----------------");
+        }
+    }
 
     /**
      * gets a clients name and which car they have and sends it to addClient.
@@ -61,20 +101,7 @@ public class Clients {
     }
 
 
-    /**
-     * Takes a clients index then removes them from clientsList.
-     */
-    public static void removeClient(){
 
-        System.out.println("Which client would you like to remove:");
-        listClients();
-        int clientSelection = Main.intInputValidation();
-        int clientIndex = Main.arrayInRangeCheck(getClientsList(),clientSelection);
-
-        Clients client = getClientsList().get(clientIndex);
-        getClientsList().remove(client);
-        System.out.println("Client removed successfully");
-    }
 
     /**
      * This method lists clients as well as their index in clientsList
@@ -108,5 +135,20 @@ public class Clients {
 
         getClientsList().get(clientIndex).setClientCar(car);
         System.out.println("Client updated successfully");
+    }
+
+    /**
+     * Takes a clients index then removes them from clientsList.
+     */
+    public static void removeClient(){
+
+        System.out.println("Which client would you like to remove:");
+        listClients();
+        int clientSelection = Main.intInputValidation();
+        int clientIndex = Main.arrayInRangeCheck(getClientsList(),clientSelection);
+
+        Clients client = getClientsList().get(clientIndex);
+        getClientsList().remove(client);
+        System.out.println("Client removed successfully");
     }
 }

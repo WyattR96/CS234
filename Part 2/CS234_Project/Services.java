@@ -2,13 +2,13 @@ package CS234_Project;
 
 import java.util.*;
 
-public class Services {
+/**
+ * This class handles the creation, reading, updating and deleting of objects of class Services. It also creates a
+ * report of all the money gained from the services.
+ */
+class Services {
 
-    /**
-     * TODO, make this class print out a service report, adding up all the money made from a service
-     */
-
-    private static Collection<Services> servicesList = new ArrayList<>();
+    private static final ArrayList<Services> servicesList = new ArrayList<>();
 
     private Employees AssignedEmployee;
     private Clients Client;
@@ -24,7 +24,7 @@ public class Services {
     }
 
     //Getters and setters
-    public static ArrayList<Services> getServicesList(){return (ArrayList<Services>) servicesList;}
+    public static ArrayList<Services> getServicesList(){return servicesList;}
 
     public void setEmployee(Employees employee){ this.AssignedEmployee = employee; }
 
@@ -52,6 +52,46 @@ public class Services {
 
 
     /**
+     * This method builds a menu to access every method dealing with the Services class.
+     */
+    public static void servicesMenu(){
+
+        while(true){
+            System.out.println("\nWhat would you like to do:");
+            System.out.println("1. Create service");
+            System.out.println("2. List services");
+            System.out.println("3. Update service");
+            System.out.println("4. Remove service");
+            System.out.println("5. Create service report");
+            System.out.println("6. Go back");
+            System.out.println("7. Quit");
+
+            int input = Main.intInputValidation();
+
+            switch(input) {
+                case 1: Services.addServicesOptions();
+                    break;
+                case 2: Services.listServices();
+                    break;
+                case 3: Services.updateService();
+                    break;
+                case 4: Services.removeService();
+                    break;
+                case 5: Services.serviceReport();
+                    break;
+                case 6: Main.menu();
+                    break;
+                case 7: System.exit(0);
+                    break;
+                case 8: default: System.out.println(
+                        "You typed "+ input + "\ninvalid input");
+                    break;
+            }
+            System.out.println("----------------");
+        }
+    }
+
+    /**
      * This method gets the users input for an employee a client a service and the service cost, then calls to
      * addService().
      */
@@ -64,7 +104,7 @@ public class Services {
 
         Employees employee = Employees.getEmployeeList().get(employeeIndex);
 
-        System.out.println("Which client will be recieving the service:");
+        System.out.println("Which client will be receiving the service:");
         Clients.listClients();
         int clientSelection = Main.intInputValidation();
         int clientIndex = Main.arrayInRangeCheck(Clients.getClientsList(),clientSelection);
@@ -170,7 +210,7 @@ public class Services {
                 break;
 
             case 5:
-                Main.servicesMenu();
+                servicesMenu();
                 break;
 
             case 6:
@@ -191,5 +231,24 @@ public class Services {
 
         getServicesList().remove(serviceIndex);
         System.out.println("Service removed successfully");
+    }
+
+    /**
+     * This method prints out a service report.
+     */
+    public static double serviceReport(){
+
+        double sum = 0;
+        for(Services service: getServicesList()){
+            System.out.println(service.getClient());
+            System.out.println("Client says: " + service.getCarService());
+            System.out.println("Cost of this service: $" + service.getServiceCost() + "\n");
+            sum += service.getServiceCost();
+        }
+
+        System.out.print("Total made from all services : $");
+        System.out.printf("%.2f", sum);
+        System.out.println();
+        return sum;
     }
 }

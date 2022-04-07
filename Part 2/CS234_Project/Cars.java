@@ -2,9 +2,12 @@ package CS234_Project;
 
 import java.util.*;
 
-public class Cars {
+/**
+ * This class handles the creation, reading, updating and deleting of objects of the class Cars.
+ */
+class Cars {
 
-    private static Collection<Cars> carsList = new ArrayList<>();
+    private static final ArrayList<Cars> carsList = new ArrayList<>();
 
     private String Make;
     private String Model;
@@ -24,11 +27,50 @@ public class Cars {
 
     public void setModel(String model){this.Model = model;}
 
+    public static ArrayList<Cars> getCarsList(){return carsList;}
+
     //Overrides the standard toString method
     public String toString(){return "Make: " + this.getMake() +" | Model: "+ this.getModel();}
 
-    public static ArrayList<Cars> getCarsList(){return (ArrayList<Cars>) carsList;}
 
+
+
+    /**
+     * This method builds a menu to access everything having to do with the Cars class.
+     */
+    public static void carsMenu(){
+
+        while(true){
+            System.out.println("\nWhat would you like to do:");
+            System.out.println("1. Add car");
+            System.out.println("2. List cars");
+            System.out.println("3. Update car");
+            System.out.println("4. Remove car");
+            System.out.println("5. Go back");
+            System.out.println("6. Quit");
+
+            int input = Main.intInputValidation();
+
+            switch(input) {
+                case 1: addCarOptions();
+                    break;
+                case 2: listCars();
+                    break;
+                case 3: updateCar();
+                    break;
+                case 4: removeCar();
+                    break;
+                case 5: Main.menu();
+                    break;
+                case 6: System.exit(0);
+                    break;
+                case 7: default: System.out.println(
+                        "You typed "+ input + "\ninvalid input");
+                    break;
+            }
+            System.out.println("----------------");
+        }
+    }
 
     /**
      * gets a cars make and model then calls addCar()
@@ -65,19 +107,7 @@ public class Cars {
         }
     }
 
-    /**
-     * Takes a cars make and model then removes it from carsList.
-     */
-    public static void removeCar(){
 
-        System.out.println("Which car would you like to remove:");
-        listCars();
-        int carSelection = Main.intInputValidation();
-        int carIndex = Main.arrayInRangeCheck(getCarsList(),carSelection);
-
-        getCarsList().remove(carIndex);
-        System.out.println("Vehicle removed successfully");
-    }
 
     /**
      * Gets the index of a car in cars list then updates a given element
@@ -116,13 +146,27 @@ public class Cars {
                 break;
 
             case 3:
-                Main.carsMenu();
+                carsMenu();
                 break;
 
             case 4: default:
                 System.out.println("Invalid input");
                 break;
         }
+    }
+
+    /**
+     * Takes a cars make and model then removes it from carsList.
+     */
+    public static void removeCar(){
+
+        System.out.println("Which car would you like to remove:");
+        listCars();
+        int carSelection = Main.intInputValidation();
+        int carIndex = Main.arrayInRangeCheck(getCarsList(),carSelection);
+
+        getCarsList().remove(carIndex);
+        System.out.println("Vehicle removed successfully");
     }
 }
 

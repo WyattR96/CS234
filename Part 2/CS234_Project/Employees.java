@@ -2,10 +2,13 @@ package CS234_Project;
 
 import java.util.*;
 
-public class Employees {
+/**
+ * This class handles the creation, reading, updating and deleting of employee objects. It also has a method for
+ * creating a report that shows the cost of all the employees.
+ */
+class Employees {
 
-    //TODO: make employeeList be of type hashmap, and instead of salary make an employee ID system
-    private static Collection<Employees> employeeList = new ArrayList<>();
+    private static final ArrayList<Employees> employeeList = new ArrayList<>();
 
     private String EmployeeName;
     private double EmployeeSalary;
@@ -25,11 +28,51 @@ public class Employees {
 
     public double getEmployeeSalary(){return this.EmployeeSalary;}
 
-    public static ArrayList<Employees> getEmployeeList(){return (ArrayList<Employees>) employeeList;}
+    public static ArrayList<Employees> getEmployeeList(){return employeeList;}
 
     //Overrides the standard toString method
     public String toString(){return "Name: " + this.getEmployeeName() + " | Salary: $" + this.getEmployeeSalary();}
 
+
+    /**
+     * This method builds the menu to access all methods having to do with the Employees class.
+     */
+    public static void employeeMenu(){
+
+        while(true){
+            System.out.println("\nWhat would you like to do:");
+            System.out.println("1. Add employee");
+            System.out.println("2. List employees");
+            System.out.println("3. Update employee");
+            System.out.println("4. Remove employee");
+            System.out.println("5. Employee cost report");
+            System.out.println("6. Go back");
+            System.out.println("7. Quit");
+
+            int input = Main.intInputValidation();
+
+            switch(input) {
+                case 1: addEmployeeOptions();
+                    break;
+                case 2: listEmployees();
+                    break;
+                case 3: updateEmployee();
+                    break;
+                case 4: removeEmployee();
+                    break;
+                case 5: employeeCostReport();
+                    break;
+                case 6: Main.menu();
+                    break;
+                case 7: System.exit(0);
+                    break;
+                case 8: default: System.out.println(
+                        "You typed "+ input + "\ninvalid input");
+                    break;
+            }
+            System.out.println("----------------");
+        }
+    }
 
     /**
      * This method gets a name and salary then creates a new employee object, saving it employeeList.
@@ -100,5 +143,23 @@ public class Employees {
 
         getEmployeeList().remove(employeeIndex);
         System.out.println("Employee removed successfully");
+    }
+
+    /**
+     * Creates a report of the cost of all the employees combined
+     */
+    public static double employeeCostReport(){
+
+        double sum = 0;
+
+        for(Employees employee: getEmployeeList()){
+            System.out.println(employee);
+            sum += employee.getEmployeeSalary();
+        }
+
+        System.out.print("Total employee salaries paid: $");
+        System.out.printf("%.2f", sum);
+        System.out.println("\n");
+        return sum;
     }
 }

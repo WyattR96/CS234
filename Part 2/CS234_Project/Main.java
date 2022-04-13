@@ -67,7 +67,7 @@ class Main {
         Appointments.addAppointment(client5,employee5,"4/18/2222");
         Appointments.addAppointment(client6,employee6,"4/31/2024");
 
-        
+
         Services.addService(employee,client,"Engine blew up lol", 6000);
         Services.addService(employee2,client2,"I drove it for 5000 miles without oil", 50000);
         Services.addService(employee3,client3,"I spilled baked beans all over the dash", 500);

@@ -98,9 +98,6 @@ class Clients {
         System.out.println("Client added successfully");
     }
 
-
-
-
     /**
      * This method lists clients as well as their index in clientsList
      */

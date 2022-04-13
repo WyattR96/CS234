@@ -101,7 +101,9 @@ class Employees {
     public static void listEmployees(){
         int employeeIndex = 0;
         for (Employees employee :employeeList){
-            System.out.println(employeeIndex + " Name:" + employee.getEmployeeName() + "| Salary: $" + employee.getEmployeeSalary());
+            System.out.println(
+                    employeeIndex + " Name:" + employee.getEmployeeName() + "| Salary: $" + employee.getEmployeeSalary()
+            );
             employeeIndex++;
         }
     }

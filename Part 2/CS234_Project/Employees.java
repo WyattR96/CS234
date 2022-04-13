@@ -10,7 +10,6 @@ class Employees {
 
     private static final ArrayList<Employees> employeeList = new ArrayList<>();
 
-
     private String EmployeeName;
     private double EmployeeSalary;
 
@@ -33,8 +32,7 @@ class Employees {
 
 
     //Overrides the standard toString method
-    public String toString(){return "Name: " + this.getEmployeeName() + " | Salary: $" + this.getEmployeeSalary();}
-
+    public String toString(){return this.getEmployeeName();}
 
     /**
      * This method builds the menu to access all methods having to do with the Employees class.
@@ -103,7 +101,7 @@ class Employees {
     public static void listEmployees(){
         int employeeIndex = 0;
         for (Employees employee :employeeList){
-            System.out.println(employeeIndex + " " + employee);
+            System.out.println(employeeIndex + " Name:" + employee.getEmployeeName() + "| Salary: $" + employee.getEmployeeSalary());
             employeeIndex++;
         }
     }
@@ -112,8 +110,8 @@ class Employees {
      * This method asks for an employees name to update then calls the update employee method to save the changes.
      */
     public static void updateEmployee(){
-        System.out.println("Which employee would you like to update:");
         listEmployees();
+        System.out.println("Type the number of the employee you would like to update:");
         int employeeSelection = Main.arrayInRangeCheck(getEmployeeList());
         Employees employee = getEmployeeList().get(employeeSelection);
 
@@ -151,15 +149,12 @@ class Employees {
         }
     }
 
-
-
     /**
      * This method asks for an employee name then removes it from employeeList.
      */
     public static void removeEmployee(){
-        System.out.println("Which employee would you like to remove:");
         listEmployees();
-
+        System.out.println("Write the number of the employee you would like removed:");
         int employeeSelection = Main.arrayInRangeCheck(getEmployeeList());
 
         getEmployeeList().remove(employeeSelection);
@@ -173,7 +168,7 @@ class Employees {
         double sum = 0;
 
         for(Employees employee: getEmployeeList()){
-            System.out.println(employee);
+            System.out.println(employee.getEmployeeName() + "| Salary: $" + employee.getEmployeeSalary());
             sum += employee.getEmployeeSalary();
         }
 

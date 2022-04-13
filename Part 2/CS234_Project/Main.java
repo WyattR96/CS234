@@ -13,7 +13,7 @@ class Main {
      * This method creates dummy data then calls the main menu method.
      */
     public static void main(String[] args){
-        
+
         Employees.addEmployee("Wyatt Robinson",60000);
         Employees.addEmployee("John Smith",65000);
         Employees.addEmployee("John Doe",55555);
@@ -35,6 +35,7 @@ class Main {
         Cars.addCar("Ford","Mustang");
         Cars.addCar("Chevrolet","Camaro");
         Cars.addCar("Nissan","Armada");
+        carType.addCar("Ford","F150","Truck");
 
         Cars car = Cars.getCarsList().get(0);
         Cars car2 = Cars.getCarsList().get(1);
@@ -48,7 +49,7 @@ class Main {
         Clients.addClient("asdf asdfson", car2);
         Clients.addClient("Josh Smithson", car3);
         Clients.addClient("xX_CarWrecker47_Xx", car4);
-        Clients.addClient("dummy mcdatason",car5);
+        Clients.addClient("dummy dataman",car5);
         Clients.addClient("Persons Name",car6);
 
         Clients client = Clients.getClientsList().get(0);
@@ -66,14 +67,13 @@ class Main {
         Appointments.addAppointment(client5,employee5,"4/18/2222");
         Appointments.addAppointment(client6,employee6,"4/31/2024");
 
+        
         Services.addService(employee,client,"Engine blew up lol", 6000);
         Services.addService(employee2,client2,"I drove it for 5000 miles without oil", 50000);
         Services.addService(employee3,client3,"I spilled baked beans all over the dash", 500);
         Services.addService(employee4,client4,"I wrecked my car for the third time this week",100000);
         Services.addService(employee5,client5,"I put a bowling ball in the trunk and now it sounds like theres a bowling ball in the trunk, please tell me why it sounds like that.",5.00);
         Services.addService(employee6,client6,"My car is currently on fire",30000);
-
-        System.out.println("\n***Dummy data added***\n");
 
         menu();
     }
@@ -118,10 +118,10 @@ class Main {
         }
     }
 
+
     /**
      * This method gets the total amount made from the services and subtracts the amount needed to keep all employees
      * giving the user the total profits of the garage.
-     * @return total profit
      */
     public static void Reports(){
 
@@ -131,6 +131,7 @@ class Main {
             System.out.println("2. Services income report");
             System.out.println("3. Total profit report");
             System.out.println("4. Go back");
+            System.out.println("5. Quit");
             int input = intInputValidation();
 
             switch (input) {
@@ -159,7 +160,9 @@ class Main {
 
                 case 4: menu(); break;
 
-                case 5: default:
+                case 5: System.exit(0);
+
+                case 6: default:
                     System.out.println("Invalid input");
                     break;
             }
@@ -223,7 +226,6 @@ class Main {
      * This is used to check if an integer is in the range of an arraylist. if the arrayList has no entries it falls
      * back to the main menu.
      * @param arr the desired array
-     * @param num the number to be checked
      * @return the number if it is smaller than the arraylists size
      */
     public static int arrayInRangeCheck(List<?> arr){
@@ -246,6 +248,7 @@ class Main {
         while(num >= arr.size() || num < 0) {
 
             System.out.println("Input must be a non-negative number " + (arr.size()-1) + " or less");
+
             while (!x.hasNextInt()) {
                 System.out.println("invalid input");
                 x.next();

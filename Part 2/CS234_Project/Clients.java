@@ -34,7 +34,6 @@ class Clients {
         return "Client name: "+ this.getClientName() + " | Client vehicle: " + this.getClientCar();
     }
 
-
     /**
      * This method builds a menu in order to access everything having to do with the Clients class.
      */
@@ -118,8 +117,8 @@ class Clients {
      * updated about a client then changes clientsList as needed
      */
     public static void updateClient(){
-        System.out.println("Which client would you like to update:");
         listClients();
+        System.out.println("Write the client number you would like to update:");
         int clientSelection = Main.arrayInRangeCheck(getClientsList());
 
         Clients client = getClientsList().get(clientSelection);
@@ -127,7 +126,7 @@ class Clients {
         System.out.println("What would you like to update about this client:");
         System.out.println("1. Their name");
         System.out.println("2. Their vehicle");
-        System.out.println("3. Go back");
+        System.out.println("3. Cancel");
         int selection = Main.intInputValidation();
 
         switch(selection){
@@ -162,8 +161,8 @@ class Clients {
      * Takes a clients index then removes them from clientsList.
      */
     public static void removeClient(){
-        System.out.println("Which client would you like to remove:");
         listClients();
+        System.out.println("Write the number of the client you would like to remove:");
         int clientSelection = Main.arrayInRangeCheck(getClientsList());
 
         Clients client = getClientsList().get(clientSelection);

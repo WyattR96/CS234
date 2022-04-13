@@ -44,12 +44,11 @@ class Services {
 
     //Overrides the standard toString method
     public String toString(){
-        return this.getEmployee() + " is servicing " + this.getClient() +
+        return "Assigned employee: " + this.getEmployee() + "\n" + this.getClient() +
                 "\nProblem: " + this.getCarService() +
                 "\nCost: $" + this.getServiceCost() +
                 "\n" ;
     }
-
 
     /**
      * This method builds a menu to access every method dealing with the Services class.
@@ -134,7 +133,7 @@ class Services {
     public static void listServices(){
         int serviceIndex = 0;
         for(Services service: servicesList){
-            System.out.println(serviceIndex + " " + service);
+            System.out.println("Service number: " + serviceIndex + "\n" + service);
             serviceIndex++;
         }
     }
@@ -144,11 +143,11 @@ class Services {
      * it then gets the users input on what to update and changes elements of the service as needed.
      */
     public static void updateService(){
-        System.out.println("Which service would you like to update:");
         listServices();
+        System.out.println("Type the service number you would like to update:");
         int serviceIndex = Main.arrayInRangeCheck(getServicesList());
-
         Services service = getServicesList().get(serviceIndex);
+
 
         System.out.println("What would you like to update about this service:");
         System.out.println("1. Assigned employee");
@@ -199,14 +198,9 @@ class Services {
                 System.out.println("Service cost updated successfully");
                 break;
 
-            case 5:
-                servicesMenu();
-                break;
+            case 5: servicesMenu(); break;
 
-            case 6:
-                default:
-                    System.out.println("Invalid input, type a number between 1 and 4");
-                break;
+            case 6: default: System.out.println("Invalid input, type a number between 1 and 4"); break;
         }
     }
 
@@ -214,8 +208,8 @@ class Services {
      * This method gets the index of a service and removes it from servicesList
      */
     public static void removeService(){
-        System.out.println("Which service would you like to remove:");
         listServices();
+        System.out.println("Write the number of the service you would like to remove:");
         int serviceSelection = Main.arrayInRangeCheck(getServicesList());
 
         getServicesList().remove(serviceSelection);

@@ -40,7 +40,6 @@ class Appointments {
         return this.getClient() + " Has an appointment with \n" + this.getEmployee() +" on " + this.getDate() + "\n";
     }
 
-
     /**
      * This method builds a menu to access everything having to do with the Appointments class.
      */
@@ -94,7 +93,6 @@ class Appointments {
         int employeeSelection = Main.intInputValidation();
         Employees employee = Employees.getEmployeeList().get(employeeSelection);
 
-        //TODO: find a better way to input times and dates, a string probably isn't the best method.
         System.out.println("Type the date of the appointment:");
         String date = Main.stringInputValidation();
 
@@ -119,7 +117,9 @@ class Appointments {
     public static void listAppointments(){
         int appointmentIndex = 0;
         for(Appointments appointment: getAppointmentsList()){
-            System.out.println(appointmentIndex + " " + appointment);
+            System.out.println(
+                    "Appointment number: "+ appointmentIndex + "\n" + appointment.getClient() + "\nEmployee: "
+                            + appointment.getEmployee() + "\nDate: " + appointment.getDate() + "\n");
             appointmentIndex++;
         }
     }
@@ -129,8 +129,8 @@ class Appointments {
      * the user what needs to be updated and changes elements in appointmentsList as needed
      */
     public static void updateAppointment(){
-        System.out.println("Which appointment would you like to update:");
         listAppointments();
+        System.out.println("Write the number of the appointment you would like to update:");
         int appointmentIndex = Main.arrayInRangeCheck(getAppointmentsList());
         Appointments appointment = getAppointmentsList().get(appointmentIndex);
 
@@ -185,8 +185,8 @@ class Appointments {
      * Gets the index of an appointment then removes it
      */
     public static void removeAppointment(){
-        System.out.println("Which appointment would you like to remove:");
         listAppointments();
+        System.out.println("Write the number of the appointment you would like to remove");
         int appointmentSelection = Main.arrayInRangeCheck(getAppointmentsList());
 
         getAppointmentsList().remove(appointmentSelection);

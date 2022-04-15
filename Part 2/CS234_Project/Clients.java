@@ -45,8 +45,9 @@ class Clients {
             System.out.println("2. List clients");
             System.out.println("3. Update client");
             System.out.println("4. Remove client");
-            System.out.println("5. Go back");
-            System.out.println("6. Quit");
+            System.out.println("5. Search clients");
+            System.out.println("6. Go back");
+            System.out.println("7. Quit");
 
             int input = Main.intInputValidation();
 
@@ -59,11 +60,13 @@ class Clients {
                     break;
                 case 4: Clients.removeClient();
                     break;
-                case 5: Main.menu();
+                case 5: searchClients();
                     break;
-                case 6: System.exit(0);
+                case 6: Main.menu();
                     break;
-                case 7: default: System.out.println(
+                case 7: System.exit(0);
+                    break;
+                case 8: default: System.out.println(
                         "You typed "+ input + "\ninvalid input");
                     break;
             }
@@ -165,5 +168,28 @@ class Clients {
         Clients client = getClientsList().get(clientSelection);
         getClientsList().remove(client);
         System.out.println("Client removed successfully");
+    }
+
+    /**
+     * This method is used to search for a client by name
+     */
+    public static void searchClients(){
+        System.out.println("Write the clients name you would like to search for:");
+        String search = Main.stringInputValidation();
+
+        for(int i = 0; i < getClientsList().size();){
+
+            if(getClientsList().get(i).getClientName().equalsIgnoreCase(search)){
+                Clients client = getClientsList().get(i);
+                System.out.println(client);
+                break;
+            }else{
+                i++;
+            }
+
+            if(i >= getClientsList().size()){
+                System.out.println("Not found");
+            }
+        }
     }
 }

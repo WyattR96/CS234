@@ -45,8 +45,9 @@ class Employees {
             System.out.println("2. List employees");
             System.out.println("3. Update employee");
             System.out.println("4. Remove employee");
-            System.out.println("5. Go back");
-            System.out.println("6. Quit");
+            System.out.println("5. Search employees");
+            System.out.println("6. Go back");
+            System.out.println("7. Quit");
 
             int input = Main.intInputValidation();
 
@@ -59,11 +60,13 @@ class Employees {
                     break;
                 case 4: removeEmployee();
                     break;
-                case 5: Main.menu();
+                case 5: searchEmployee();
                     break;
-                case 6: System.exit(0);
+                case 6: Main.menu();
                     break;
-                case 7: default: System.out.println(
+                case 7: System.exit(0);
+                    break;
+                case 8: default: System.out.println(
                         "You typed "+ input + "\ninvalid input");
                     break;
             }
@@ -178,5 +181,28 @@ class Employees {
         System.out.printf("%.2f", sum);
         System.out.println("\n");
         return sum;
+    }
+
+    /**
+     * This method is used to search for an employee by name
+     */
+    public static void searchEmployee(){
+        System.out.println("Write the name of the employee you are searching for:");
+        String search = Main.stringInputValidation();
+
+        for(int i = 0; i < getEmployeeList().size();){
+
+            if(getEmployeeList().get(i).getEmployeeName().equalsIgnoreCase(search)){
+                Employees employee = getEmployeeList().get(i);
+                System.out.println("Name: " + employee.getEmployeeName() + " | Salary: " + employee.getEmployeeSalary());
+                break;
+            }else{
+                i++;
+            }
+
+            if(i >= getEmployeeList().size()){
+                System.out.println("Not found");
+            }
+        }
     }
 }

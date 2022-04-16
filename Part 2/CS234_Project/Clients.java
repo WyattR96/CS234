@@ -52,13 +52,13 @@ class Clients {
             int input = Main.intInputValidation();
 
             switch(input) {
-                case 1: Clients.addClientOptions();
+                case 1: addClientOptions();
                     break;
-                case 2: Clients.listClients();
+                case 2: listClients();
                     break;
-                case 3: Clients.updateClient();
+                case 3: updateClient();
                     break;
-                case 4: Clients.removeClient();
+                case 4: removeClient();
                     break;
                 case 5: searchClients();
                     break;
@@ -171,7 +171,8 @@ class Clients {
     }
 
     /**
-     * This method is used to search for a client by name
+     * This method is used to search for a client. It asks the user for their name as an input and if there is an
+     * occurrence of that name in clientsList it will print out all info about that particular client.
      */
     public static void searchClients(){
         System.out.println("Write the clients name you would like to search for:");
@@ -185,10 +186,6 @@ class Clients {
                 break;
             }else{
                 i++;
-            }
-
-            if(i >= getClientsList().size()){
-                System.out.println("Not found");
             }
         }
     }

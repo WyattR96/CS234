@@ -163,12 +163,18 @@ class Cars {
         System.out.println("Vehicle removed successfully");
     }
 
+    /**
+     * This method is used to search for cars. It takes a maker or model of a car and prints out any instance of that
+     * vehicle in carsList.
+     */
     public static void searchCars(){
         System.out.println("Write the make or model of the car you are searching for:");
         String search = Main.stringInputValidation();
 
         for(int i = 0; i < getCarsList().size();){
-            if(getCarsList().get(i).getMake().equalsIgnoreCase(search) || getCarsList().get(i).getModel().equalsIgnoreCase(search)){
+            if(getCarsList().get(i).getMake().equalsIgnoreCase(search)
+             || getCarsList().get(i).getModel().equalsIgnoreCase(search))
+            {
                 Cars car = getCarsList().get(i);
                 System.out.println(car);
             }

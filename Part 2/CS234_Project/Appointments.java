@@ -51,25 +51,28 @@ class Appointments {
             System.out.println("2. List appointments");
             System.out.println("3. Update appointment");
             System.out.println("4. Remove appointment");
-            System.out.println("5. Go back");
-            System.out.println("6. Quit");
+            System.out.println("5. Search appointments");
+            System.out.println("6. Go back");
+            System.out.println("7. Quit");
 
             int input = Main.intInputValidation();
 
             switch(input) {
-                case 1: Appointments.addAppointmentOptions();
+                case 1: addAppointmentOptions();
                     break;
-                case 2: Appointments.listAppointments();
+                case 2: listAppointments();
                     break;
-                case 3: Appointments.updateAppointment();
+                case 3: updateAppointment();
                     break;
-                case 4: Appointments.removeAppointment();
+                case 4: removeAppointment();
                     break;
-                case 5: Main.menu();
+                case 5: searchAppointments();
                     break;
-                case 6: System.exit(0);
+                case 6: Main.menu();
                     break;
-                case 7: default: System.out.println(
+                case 7: System.exit(0);
+                    break;
+                case 8: default: System.out.println(
                         "You typed "+ input + "\ninvalid input");
                     break;
             }
@@ -191,5 +194,27 @@ class Appointments {
 
         getAppointmentsList().remove(appointmentSelection);
         System.out.println("Appointment removed successfully");
+    }
+
+    /**
+     * This method is used to search appointments. It takes a search input and checks if a client or employee by that
+     * name exist in appointmentsList.
+     */
+    public static void searchAppointments(){
+        System.out.println("Write the Client, Employee or date of the appointment:");
+        String search = Main.stringInputValidation();
+
+        for(int i = 0; i < getAppointmentsList().size();){
+
+            if(     getAppointmentsList().get(i).getClient().getClientName().equalsIgnoreCase(search)
+                    || getAppointmentsList().get(i).getDate().equalsIgnoreCase(search)
+                    || getAppointmentsList().get(i).getEmployee().getEmployeeName().equalsIgnoreCase(search))
+            {
+
+                Appointments appointment = getAppointmentsList().get(i);
+                System.out.println(appointment);
+            }
+            i++;
+        }
     }
 }

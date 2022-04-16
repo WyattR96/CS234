@@ -184,7 +184,8 @@ class Employees {
     }
 
     /**
-     * This method is used to search for an employee by name
+     * This method is used to search for an employee. It asks the user to input the name and searches employeeList for
+     * any occurrences of that name.
      */
     public static void searchEmployee(){
         System.out.println("Write the name of the employee you are searching for:");
@@ -194,14 +195,12 @@ class Employees {
 
             if(getEmployeeList().get(i).getEmployeeName().equalsIgnoreCase(search)){
                 Employees employee = getEmployeeList().get(i);
-                System.out.println("Name: " + employee.getEmployeeName() + " | Salary: " + employee.getEmployeeSalary());
+                System.out.println(
+                        "Name: " + employee.getEmployeeName() + " | Salary: " + employee.getEmployeeSalary()
+                );
                 break;
             }else{
                 i++;
-            }
-
-            if(i >= getEmployeeList().size()){
-                System.out.println("Not found");
             }
         }
     }

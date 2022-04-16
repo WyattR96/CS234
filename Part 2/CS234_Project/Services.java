@@ -61,25 +61,28 @@ class Services {
             System.out.println("2. List services");
             System.out.println("3. Update service");
             System.out.println("4. Remove service");
-            System.out.println("5. Go back");
-            System.out.println("6. Quit");
+            System.out.println("5. Search services");
+            System.out.println("6. Go back");
+            System.out.println("7. Quit");
 
             int input = Main.intInputValidation();
 
             switch(input) {
-                case 1: Services.addServicesOptions();
+                case 1: addServicesOptions();
                     break;
-                case 2: Services.listServices();
+                case 2: listServices();
                     break;
-                case 3: Services.updateService();
+                case 3: updateService();
                     break;
-                case 4: Services.removeService();
+                case 4: removeService();
                     break;
-                case 5: Main.menu();
+                case 5: searchServices();
                     break;
-                case 6: System.exit(0);
+                case 6: Main.menu();
                     break;
-                case 7: default: System.out.println(
+                case 7: System.exit(0);
+                    break;
+                case 8: default: System.out.println(
                         "You typed "+ input + "\ninvalid input");
                     break;
             }
@@ -232,5 +235,26 @@ class Services {
         System.out.printf("%.2f", sum);
         System.out.println();
         return sum;
+    }
+
+    /**
+     * This method is used to search services. It asks the user for an input, then if a client name or employee name
+     * shows up in servicesList it prints all instances of that employee or client.
+     */
+    public static void searchServices(){
+        System.out.println("Write the employee or client assigned to a service:");
+        String search = Main.stringInputValidation();
+
+        for(int i = 0; i < getServicesList().size();){
+
+            if(     getServicesList().get(i).getClient().getClientName().equalsIgnoreCase(search)
+                    || getServicesList().get(i).getEmployee().getEmployeeName().equalsIgnoreCase(search))
+            {
+
+                Services service = getServicesList().get(i);
+                System.out.println(service);
+            }
+            i++;
+        }
     }
 }

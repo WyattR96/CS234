@@ -43,8 +43,9 @@ class Cars {
             System.out.println("2. List cars");
             System.out.println("3. Update car");
             System.out.println("4. Remove car");
-            System.out.println("5. Go back");
-            System.out.println("6. Quit");
+            System.out.println("5. Search cars");
+            System.out.println("6. Go back");
+            System.out.println("7. Quit");
 
             int input = Main.intInputValidation();
 
@@ -57,11 +58,13 @@ class Cars {
 
                 case 4: removeCar(); break;
 
-                case 5: Main.menu(); break;
+                case 5: searchCars(); break;
 
-                case 6: System.exit(0);
+                case 6: Main.menu(); break;
+
+                case 7: System.exit(0);
                     break;
-                case 7: default: System.out.println(
+                case 8: default: System.out.println(
                         "You typed "+ input + "\ninvalid input");
                     break;
             }
@@ -160,6 +163,19 @@ class Cars {
         System.out.println("Vehicle removed successfully");
     }
 
+    public static void searchCars(){
+        System.out.println("Write the make or model of the car you are searching for:");
+        String search = Main.stringInputValidation();
+
+        for(int i = 0; i < getCarsList().size();){
+            if(getCarsList().get(i).getMake().equalsIgnoreCase(search) || getCarsList().get(i).getModel().equalsIgnoreCase(search)){
+                Cars car = getCarsList().get(i);
+                System.out.println(car);
+            }
+            i++;
+        }
+    }
+
 }
 
 class carType extends Cars{
@@ -199,4 +215,6 @@ class carType extends Cars{
         getCarsList().add(newCar);
         System.out.println("Vehicle added successfully");
     }
+
+
 }

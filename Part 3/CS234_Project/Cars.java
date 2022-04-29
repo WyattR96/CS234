@@ -1,13 +1,14 @@
 package CS234_Project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * This class handles the creation, reading, updating and deleting of objects of the class Cars.
  */
-class Cars {
+class Cars implements Serializable {
 
-    private static final ArrayList<Cars> carsList = new ArrayList<>();
+    private static ArrayList<Cars> carsList = new ArrayList<>();
 
     private String Make;
     private String Model;
@@ -20,6 +21,8 @@ class Cars {
 
     //Getters and setters
     public static ArrayList<Cars> getCarsList(){return carsList;}
+
+    public static void setCarsList(ArrayList<Cars> arr){ carsList = arr;}
 
     public String getMake(){return this.Make;}
 
@@ -184,7 +187,7 @@ class Cars {
 
 }
 
-class carType extends Cars{
+class carType extends Cars implements Serializable{
 
     private String Type;
 

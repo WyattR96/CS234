@@ -1,14 +1,15 @@
 package CS234_Project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * This class handles the creation, reading, updating and deleting of employee objects. It also has a method for
  * creating a report that shows the cost of all the employees.
  */
-class Employees {
+class Employees implements Serializable {
 
-    private static final ArrayList<Employees> employeeList = new ArrayList<>();
+    private static ArrayList<Employees> employeeList = new ArrayList<>();
 
     private String EmployeeName;
     private double EmployeeSalary;
@@ -21,6 +22,8 @@ class Employees {
 
     //Getters, setters and toString
     public static ArrayList<Employees> getEmployeeList(){return employeeList;}
+
+    public static void setEmployeeList(ArrayList<Employees> arr){employeeList = arr;}
 
     public void setEmployeeName(String name){this.EmployeeName = name;}
 

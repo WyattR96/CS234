@@ -206,6 +206,8 @@ public class CS234_GUI extends javax.swing.JFrame {
         ProfitReport = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         ReportText = new javax.swing.JTextArea();
+        jPanel16 = new javax.swing.JPanel();
+        SaveDataButton = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -1565,6 +1567,32 @@ public class CS234_GUI extends javax.swing.JFrame {
 
         Main.addTab("Reports", jPanel19);
 
+        SaveDataButton.setText("Write all data to file");
+        SaveDataButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveDataButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SaveDataButton, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SaveDataButton, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Main.addTab("Data", jPanel16);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1675,6 +1703,11 @@ public class CS234_GUI extends javax.swing.JFrame {
             UpdateAppointmentEmployee.addItem(employee.getEmployeeName());
         }
         
+        EmployeeAppointmentBox.removeAllItems();
+        for(Employees employee:Employees.getEmployeeList()){
+            EmployeeAppointmentBox.addItem(employee.getEmployeeName());
+        }
+        
         DefaultTableModel model = (DefaultTableModel) EmployeeTable.getModel();
         model.setRowCount(0);
         for(Employees employee: Employees.getEmployeeList()){
@@ -1781,6 +1814,7 @@ public class CS234_GUI extends javax.swing.JFrame {
             }
             i++;
         }
+       SearchCarField.setText("");
     }//GEN-LAST:event_SearchCarButtonActionPerformed
 
     private void DeleteCarBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCarBoxActionPerformed
@@ -1959,6 +1993,7 @@ public class CS234_GUI extends javax.swing.JFrame {
                 i++;
             }
         }
+        SearchClientField.setText("");
     }//GEN-LAST:event_SearchClientButtonActionPerformed
        
     /**
@@ -1995,6 +2030,11 @@ public class CS234_GUI extends javax.swing.JFrame {
         ClientAppointmentBox.removeAllItems();
         for(Clients client: Clients.getClientsList()){
             ClientAppointmentBox.addItem(client.getClientName());
+        }
+        
+        UpdateAppointmentClient.removeAllItems();
+        for(Clients client: Clients.getClientsList()){
+            UpdateAppointmentClient.addItem(client.getClientName());
         }
         
         DefaultTableModel model = (DefaultTableModel) ClientTable.getModel();
@@ -2189,6 +2229,7 @@ public class CS234_GUI extends javax.swing.JFrame {
         Appointments appointment = new Appointments(client,employee,date);
         Appointments.getAppointmentsList().add(appointment);
         
+        AppointmentDate.setText("");
         updateAppointmentPanel();
     }//GEN-LAST:event_AddAppointmentButtonActionPerformed
     
@@ -2433,6 +2474,8 @@ public class CS234_GUI extends javax.swing.JFrame {
                 i++;
             }
         }
+        
+        EmployeeSearchField.setText("");
     }//GEN-LAST:event_EmployeeSearchButtonActionPerformed
     
     /**
@@ -2460,6 +2503,7 @@ public class CS234_GUI extends javax.swing.JFrame {
             }
             i++;
         }
+        ServiceSearch.setText("");
     }//GEN-LAST:event_SearchServiceButtonActionPerformed
     
     /**
@@ -2474,6 +2518,10 @@ public class CS234_GUI extends javax.swing.JFrame {
         
         updateServicePanel();
     }//GEN-LAST:event_RemoveServiceButtonActionPerformed
+
+    private void SaveDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveDataButtonActionPerformed
+        CS234_Project.Main.writeToFile();
+    }//GEN-LAST:event_SaveDataButtonActionPerformed
     
     /**
      * This method handles updating the appointment panel as well as updating the appointment comboboxes throughout
@@ -2573,6 +2621,7 @@ public class CS234_GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> RemoveServiceBox;
     private javax.swing.JButton RemoveServiceButton;
     private javax.swing.JTextArea ReportText;
+    private javax.swing.JButton SaveDataButton;
     private javax.swing.JButton SearchCarButton;
     private javax.swing.JTextField SearchCarField;
     private javax.swing.JButton SearchClientButton;
@@ -2651,6 +2700,7 @@ public class CS234_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;

@@ -1,13 +1,14 @@
 package CS234_Project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * This class handles the creation, reading, updating and deleting of objects of class Clients.
  */
-class Clients {
+class Clients implements Serializable {
 
-    private static final ArrayList<Clients> clientsList = new ArrayList<>();
+    private static ArrayList<Clients> clientsList = new ArrayList<>();
 
     private String Name;
     private Cars Car;
@@ -20,6 +21,8 @@ class Clients {
 
     //Getters and setters
     public static ArrayList<Clients> getClientsList(){return clientsList;}
+
+    public static void setClientsList(ArrayList<Clients> arr){clientsList = arr;}
 
     public void setClientName(String name){ this.Name = name; }
 

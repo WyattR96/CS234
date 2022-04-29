@@ -1,14 +1,15 @@
 package CS234_Project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * This class handles the creation, reading, updating and deleting of objects of class Services. It also creates a
  * report of all the money gained from the services.
  */
-class Services {
+class Services implements Serializable {
 
-    private static final ArrayList<Services> servicesList = new ArrayList<>();
+    private static ArrayList<Services> servicesList = new ArrayList<>();
 
     private Employees AssignedEmployee;
     private Clients Client;
@@ -25,6 +26,8 @@ class Services {
 
     //Getters and setters
     public static ArrayList<Services> getServicesList(){return servicesList;}
+
+    public static void setServicesList(ArrayList<Services> arr){servicesList = arr;}
 
     public void setEmployee(Employees employee){ this.AssignedEmployee = employee; }
 

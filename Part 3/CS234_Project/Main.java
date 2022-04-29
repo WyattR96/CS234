@@ -1,5 +1,7 @@
 package CS234_Project;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +15,7 @@ class Main {
      * This method creates dummy data then calls the main menu method.
      */
     public static void main(String[] args){
-
+        /*
         Employees.addEmployee("Wyatt Robinson",60000);
         Employees.addEmployee("John Smith",65000);
         Employees.addEmployee("John Doe",55555);
@@ -74,7 +76,8 @@ class Main {
         Services.addService(employee4,client4,"I wrecked my car for the third time this week",100000);
         Services.addService(employee5,client5,"I put a bowling ball in the trunk and now it sounds like theres a bowling ball in the trunk",5.00);
         Services.addService(employee6,client6,"My car is currently on fire",30000);
-
+        */
+        readFromFile();
 
         CS234_GUI.Run();
         menu();
@@ -258,5 +261,163 @@ class Main {
             num = x.nextInt();
         }
             return num;
+        }
+
+
+        public static void writeToFile(){
+            /*
+            This gets employeesList and saves it to employeeData.dat
+             */
+            ArrayList<Employees> employees = Employees.getEmployeeList();
+            try{
+                FileOutputStream write = new FileOutputStream("employeeData.dat");
+                ObjectOutputStream writeStream = new ObjectOutputStream(write);
+
+                writeStream.writeObject(employees);
+                writeStream.flush();
+                writeStream.close();
+
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            /*
+            This gets servicesList and saves it to serviceData.dat
+             */
+            ArrayList<Services> services = Services.getServicesList();
+            try{
+                FileOutputStream write = new FileOutputStream("serviceData.dat");
+                ObjectOutputStream writeStream = new ObjectOutputStream(write);
+
+                writeStream.writeObject(services);
+                writeStream.flush();
+                writeStream.close();
+
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            /*
+            This gets carsList and saves it to carData.dat
+             */
+            ArrayList<Cars> cars = Cars.getCarsList();
+            try{
+                FileOutputStream write = new FileOutputStream("carData.dat");
+                ObjectOutputStream writeStream = new ObjectOutputStream(write);
+
+                writeStream.writeObject(cars);
+                writeStream.flush();
+                writeStream.close();
+
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            /*
+            This gets clientsList and saves it to clientData.dat
+             */
+            ArrayList<Clients> clients = Clients.getClientsList();
+            try{
+                FileOutputStream write = new FileOutputStream("clientData.dat");
+                ObjectOutputStream writeStream = new ObjectOutputStream(write);
+
+                writeStream.writeObject(clients);
+                writeStream.flush();
+                writeStream.close();
+
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            /*
+            This gets appointmentsList and saves it to appointmentData.dat
+             */
+            ArrayList<Appointments> appointments = Appointments.getAppointmentsList();
+            try{
+                FileOutputStream write = new FileOutputStream("appointmentData.dat");
+                ObjectOutputStream writeStream = new ObjectOutputStream(write);
+
+                writeStream.writeObject(appointments);
+                writeStream.flush();
+                writeStream.close();
+
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public static void readFromFile(){
+
+        /*
+        This gets employeeData.dat and saves it to employeeList
+         */
+            try{
+                FileInputStream read = new FileInputStream("Data/employeeData.dat");
+                ObjectInputStream readStream = new ObjectInputStream(read);
+
+                ArrayList<Employees> employees = (ArrayList<Employees>) readStream.readObject();
+                Employees.setEmployeeList(employees);
+                readStream.close();
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            /*
+            this gets serviceData.dat and saves it to servicesList
+             */
+            try{
+                FileInputStream read = new FileInputStream("Data/serviceData.dat");
+                ObjectInputStream readStream = new ObjectInputStream(read);
+
+                ArrayList<Services> services = (ArrayList<Services>) readStream.readObject();
+                Services.setServicesList(services);
+                readStream.close();
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            /*
+            This gets carData.dat and saves it to carsList
+             */
+            try{
+                FileInputStream read = new FileInputStream("Data/carData.dat");
+                ObjectInputStream readStream = new ObjectInputStream(read);
+
+                ArrayList<Cars> cars = (ArrayList<Cars>) readStream.readObject();
+                Cars.setCarsList(cars);
+                readStream.close();
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            /*
+            this gets appointmentData.dat and saves that to appointmentsList
+             */
+            try{
+                FileInputStream read = new FileInputStream("Data/appointmentData.dat");
+                ObjectInputStream readStream = new ObjectInputStream(read);
+
+                ArrayList<Appointments> appointments = (ArrayList<Appointments>) readStream.readObject();
+                Appointments.setAppointmentsList(appointments);
+                readStream.close();
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try{
+                FileInputStream read = new FileInputStream("Data/clientData.dat");
+                ObjectInputStream readStream = new ObjectInputStream(read);
+
+                ArrayList<Clients> clients = (ArrayList<Clients>) readStream.readObject();
+                Clients.setClientsList(clients);
+                readStream.close();
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }

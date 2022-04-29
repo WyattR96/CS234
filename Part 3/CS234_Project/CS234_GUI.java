@@ -2490,7 +2490,7 @@ public class CS234_GUI extends javax.swing.JFrame {
             if(Clients.getClientsList().get(i).getClientName().equalsIgnoreCase(ServiceSearch.getText()) || 
                  Employees.getEmployeeList().get(i).getEmployeeName().equalsIgnoreCase(ServiceSearch.getText())){
                 
-                Services service = Services.getServicesList().get(i);
+                Services service = Services.getServicesList().get(i-1);
                 
                 String client = service.getClient().getClientName();
                 String employee = service.getEmployee().getEmployeeName();

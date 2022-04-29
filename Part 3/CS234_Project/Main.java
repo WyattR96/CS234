@@ -352,7 +352,7 @@ class Main {
         This gets employeeData.dat and saves it to employeeList
          */
             try{
-                FileInputStream read = new FileInputStream("Data/employeeData.dat");
+                FileInputStream read = new FileInputStream("employeeData.dat");
                 ObjectInputStream readStream = new ObjectInputStream(read);
 
                 ArrayList<Employees> employees = (ArrayList<Employees>) readStream.readObject();
@@ -367,7 +367,7 @@ class Main {
             this gets serviceData.dat and saves it to servicesList
              */
             try{
-                FileInputStream read = new FileInputStream("Data/serviceData.dat");
+                FileInputStream read = new FileInputStream("serviceData.dat");
                 ObjectInputStream readStream = new ObjectInputStream(read);
 
                 ArrayList<Services> services = (ArrayList<Services>) readStream.readObject();
@@ -382,7 +382,7 @@ class Main {
             This gets carData.dat and saves it to carsList
              */
             try{
-                FileInputStream read = new FileInputStream("Data/carData.dat");
+                FileInputStream read = new FileInputStream("carData.dat");
                 ObjectInputStream readStream = new ObjectInputStream(read);
 
                 ArrayList<Cars> cars = (ArrayList<Cars>) readStream.readObject();
@@ -397,7 +397,7 @@ class Main {
             this gets appointmentData.dat and saves that to appointmentsList
              */
             try{
-                FileInputStream read = new FileInputStream("Data/appointmentData.dat");
+                FileInputStream read = new FileInputStream("appointmentData.dat");
                 ObjectInputStream readStream = new ObjectInputStream(read);
 
                 ArrayList<Appointments> appointments = (ArrayList<Appointments>) readStream.readObject();
@@ -409,7 +409,7 @@ class Main {
             }
 
             try{
-                FileInputStream read = new FileInputStream("Data/clientData.dat");
+                FileInputStream read = new FileInputStream("clientData.dat");
                 ObjectInputStream readStream = new ObjectInputStream(read);
 
                 ArrayList<Clients> clients = (ArrayList<Clients>) readStream.readObject();

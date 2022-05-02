@@ -2,4 +2,6 @@
 2. Type "javac CS234_Project/Main.java" After this step the program should be compiled and ready to run.
 3. Type "java CS234_Project.Main" to run the program.
 
-Alternatively the program can be opened by simply clicking on the CS234_Project.jar file.
+Alternatively the program can be opened by simply clicking on the CS234_Project.jar file. 
+
+The location of the jar file can also be navigated to using cmd or a terminal and typing "java -jar CS234_Project.jar

@@ -78,7 +78,7 @@ class Main {
         Services.addService(employee6,client6,"My car is currently on fire",30000);
         */
         readFromFile();
-
+        //writeToFile();
         CS234_GUI.Run();
         menu();
     }
@@ -264,7 +264,7 @@ class Main {
         }
 
 
-        public static void writeToFile(){
+        public static int writeToFile(){
             /*
             This gets employeesList and saves it to employeeData.dat
              */
@@ -344,6 +344,8 @@ class Main {
             }catch (IOException e) {
                 e.printStackTrace();
             }
+            
+            return 0;
         }
 
         public static void readFromFile(){

@@ -206,8 +206,10 @@ public class CS234_GUI extends javax.swing.JFrame {
         ProfitReport = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         ReportText = new javax.swing.JTextArea();
-        jPanel16 = new javax.swing.JPanel();
-        SaveDataButton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        MenuSaveToFile = new javax.swing.JMenuItem();
+        MenuExit = new javax.swing.JMenuItem();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -1567,31 +1569,27 @@ public class CS234_GUI extends javax.swing.JFrame {
 
         Main.addTab("Reports", jPanel19);
 
-        SaveDataButton.setText("Write all data to file");
-        SaveDataButton.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setText("File");
+
+        MenuSaveToFile.setText("Save Data To File");
+        MenuSaveToFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveDataButtonActionPerformed(evt);
+                MenuSaveToFileActionPerformed(evt);
             }
         });
+        jMenu1.add(MenuSaveToFile);
 
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SaveDataButton, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SaveDataButton, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        MenuExit.setText("Exit");
+        MenuExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuExitActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuExit);
 
-        Main.addTab("Data", jPanel16);
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2519,9 +2517,13 @@ public class CS234_GUI extends javax.swing.JFrame {
         updateServicePanel();
     }//GEN-LAST:event_RemoveServiceButtonActionPerformed
 
-    private void SaveDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveDataButtonActionPerformed
+    private void MenuSaveToFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaveToFileActionPerformed
         CS234_Project.Main.writeToFile();
-    }//GEN-LAST:event_SaveDataButtonActionPerformed
+    }//GEN-LAST:event_MenuSaveToFileActionPerformed
+
+    private void MenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_MenuExitActionPerformed
     
     /**
      * This method handles updating the appointment panel as well as updating the appointment comboboxes throughout
@@ -2605,6 +2607,8 @@ public class CS234_GUI extends javax.swing.JFrame {
     private javax.swing.JTextField EmployeeSearchField;
     private javax.swing.JTable EmployeeTable;
     private javax.swing.JTabbedPane Main;
+    private javax.swing.JMenuItem MenuExit;
+    private javax.swing.JMenuItem MenuSaveToFile;
     private javax.swing.JPanel NewClientBox;
     private javax.swing.JTextField NewSalary;
     private javax.swing.JButton ProfitReport;
@@ -2621,7 +2625,6 @@ public class CS234_GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> RemoveServiceBox;
     private javax.swing.JButton RemoveServiceButton;
     private javax.swing.JTextArea ReportText;
-    private javax.swing.JButton SaveDataButton;
     private javax.swing.JButton SearchCarButton;
     private javax.swing.JTextField SearchCarField;
     private javax.swing.JButton SearchClientButton;
@@ -2693,6 +2696,8 @@ public class CS234_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -2700,7 +2705,6 @@ public class CS234_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;

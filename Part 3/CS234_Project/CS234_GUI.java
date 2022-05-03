@@ -1619,7 +1619,7 @@ public class CS234_GUI extends javax.swing.JFrame {
         
         EmployeeNameAdd.setText("");
         EmployeeSalaryAdd.setText("");
-        
+
         updateEmployeePanel();
         
     }//GEN-LAST:event_AddEmployeeButtonActionPerformed
@@ -1637,7 +1637,7 @@ public class CS234_GUI extends javax.swing.JFrame {
         Employees employeeRemove = Employees.getEmployeeList().get(employeeIndex);
         
         Employees.getEmployeeList().remove(employeeRemove);
-        
+
         updateEmployeePanel();
         
     }//GEN-LAST:event_RemoveEmployeeButtonActionPerformed
@@ -1662,7 +1662,7 @@ public class CS234_GUI extends javax.swing.JFrame {
         employeeUpdate.setEmployeeSalary(newSalary);
         
         NewSalary.setText("");
-        
+
         updateEmployeePanel();
     }//GEN-LAST:event_UpdateEmployeeButtonActionPerformed
     
@@ -1716,6 +1716,8 @@ public class CS234_GUI extends javax.swing.JFrame {
             
             model.addRow(data);     
         }
+
+        CS234_Project.Main.writeToFile();
     }
     
     private void CarMakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarMakeActionPerformed
@@ -1881,6 +1883,8 @@ public class CS234_GUI extends javax.swing.JFrame {
             
             model.addRow(data);     
         }
+
+        CS234_Project.Main.writeToFile();
     }
     
     private void SearchClientFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchClientFieldActionPerformed
@@ -2046,6 +2050,8 @@ public class CS234_GUI extends javax.swing.JFrame {
             
             model.addRow(data);     
         }
+
+        CS234_Project.Main.writeToFile();
     }
     
     /**
@@ -2147,6 +2153,8 @@ public class CS234_GUI extends javax.swing.JFrame {
             
             model.addRow(data);   
         }
+
+        CS234_Project.Main.writeToFile();
     }
     
     /**
@@ -2559,6 +2567,8 @@ public class CS234_GUI extends javax.swing.JFrame {
             
             model.addRow(data);     
         }
+
+        CS234_Project.Main.writeToFile();
     }
     
     
